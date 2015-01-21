@@ -1,9 +1,12 @@
 from urllib import quote_plus
-import sys, webbrowser
+import sys
+import webbrowser
 
 def main(argv):
 
-    query = "+".join(map(quote_plus, argv[1:]))
+    source = sys.stdin.readlines() if len(argv) == 1 else argv[1:]
+    query = "+".join(map(quote_plus, source))
+
     url = "https://www.google.com/#q=%s" % (query,)
     webbrowser.open(url,new=2)
 
